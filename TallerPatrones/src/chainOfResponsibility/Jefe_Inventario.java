@@ -1,3 +1,6 @@
+package chainOfResponsibility;
+
+import sistema.Producto;
 
 public class Jefe_Inventario implements IHandler{
      private IHandler siguiente = null;

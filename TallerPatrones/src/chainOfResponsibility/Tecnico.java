@@ -1,3 +1,7 @@
+package chainOfResponsibility;
+
+import sistema.Fallo;
+import sistema.Producto;
 
 public class Tecnico implements IHandler{
     private IHandler siguiente = null;
@@ -6,11 +10,10 @@ public class Tecnico implements IHandler{
         siguiente = pSiguiente;
     }
 
-    @Override
-    public boolean cambiar_Producto(Producto producto, String fallo) {
+    public boolean cambiar_Producto(Producto producto, Fallo fallo) {
         boolean cambio = false;
         //verificar que el producto se encuentra en periodo de garantía
-        if(producto.garantia.fallos.contains(fallo)){
+        if(producto.getGarantia().getFallos_permitidos().contains(fallo)){
             cambio = siguiente.cambiar_Producto(producto, fallo);
         }else{
             return cambio;
